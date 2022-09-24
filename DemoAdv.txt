@@ -1,0 +1,33 @@
+#page 1
+#text
+You are in a room. There are three doors labeled "One", "Two" and "There" respectively.
+Which door do you choose?
+
+#options
+Door One#2
+Door Two#3
+Door Three#4
+
+#page 2
+#text
+You went to Door One!
+There's nothing interesting here besides a table and a couch. You can relax here!
+
+#options
+Go back#1
+
+#page 3
+#text
+You went to Door Two!
+In this room there's only a table with a note on it.
+
+#options
+Go back#1
+Read note#5
+
+#page 4
+#text
+You went to Door Three!
+The door closes behind you, now you're trapped!
+
+#end
