@@ -4,8 +4,10 @@
 #include <string>
 #include <vector>
 #include <sstream>
+#include <utility>
 
 #include "include/Page.h"
+#include "Page.cpp" //not good! it works, but it's NOT GOOD!!
 
 using namespace std;
 
@@ -37,10 +39,10 @@ void load_adv(string filename, vector<Page *> &adventure)
             {
                 if (mode != 0)
                 {
-                    Page p(page_number, text, options);
-                    // adventure.push_back(&p);
+                    Page *p = new Page(page_number, text, options);
+                    adventure.push_back(p);
                     text = "";
-                    // option_text = "";
+                    option_text = "";
                 }
 
                 mode = 0;
@@ -75,5 +77,9 @@ int main()
 {
     vector<Page *> adventure;
     load_adv("DemoAdv.txt", adventure);
+    adventure[0]->show_text();
+    adventure[1]->show_text();
+    adventure[2]->show_text();
+    // adventure[3]->show_text();       // segmentation fault, i know how to fix it, i'll do it later;
     return 0;
 }

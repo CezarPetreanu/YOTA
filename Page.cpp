@@ -18,3 +18,8 @@ Page::Page(int page_number, string text, vector<pair<string, int>> options)
 Page::~Page()
 {
 }
+
+void Page::show_text()
+{
+    cout << this->text;
+}

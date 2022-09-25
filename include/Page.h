@@ -17,6 +17,7 @@ public:
     Page();
     Page(int page_number, string text, vector<pair<string, int>> options);
     virtual ~Page();
+    void show_text();
 
 protected:
 private:
