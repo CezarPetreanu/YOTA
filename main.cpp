@@ -22,6 +22,7 @@ void load_adv(string filename, vector<Page *> &adventure)
     int page_number;
     string text;
     string option_text;
+    int option_page;
     vector<pair<string, int>> options;
 
     ifstream fin;
@@ -59,6 +60,13 @@ void load_adv(string filename, vector<Page *> &adventure)
                 mode = 2;
                 continue;
             }
+            else if (keyword == "#end")
+            {
+                Page *p = new Page(page_number, text, options);
+                adventure.push_back(p);
+                text = "";
+                option_text = "";
+            }
         }
         else
         {
@@ -66,6 +74,19 @@ void load_adv(string filename, vector<Page *> &adventure)
             {
                 text += line;
                 text += "\n";
+            }
+            else if (mode == 2)
+            {
+                if (line != "")
+                {
+                    stringstream s2(line);
+                    string keyword2;
+                    getline(s2, keyword2, '#');
+                    option_text = keyword2;
+                    getline(s2, keyword2, '#');
+                    option_page = atoi(keyword2.c_str());
+                    options.push_back(pair<string, int>(option_text, option_page));
+                }
             }
         }
     }
@@ -78,8 +99,6 @@ int main()
     vector<Page *> adventure;
     load_adv("DemoAdv.txt", adventure);
     adventure[0]->show_text();
-    adventure[1]->show_text();
-    adventure[2]->show_text();
-    // adventure[3]->show_text();       // segmentation fault, i know how to fix it, i'll do it later;
+    adventure[0]->show_options();
     return 0;
 }

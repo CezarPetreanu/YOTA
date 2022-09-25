@@ -23,3 +23,10 @@ void Page::show_text()
 {
     cout << this->text;
 }
+
+void Page::show_options()
+{
+    int n = 1;
+    for (auto i : this->options)
+        cout << n++ << ". " << i.first << '\n';
+}
